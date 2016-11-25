@@ -82,14 +82,26 @@ function updateTimeSegment(segmentElement, timeValue) {
 }
 
 function updateTimeSection(sectionID, timeValue) {
-  const firstNumber = Math.floor(timeValue / 10) || 0;
-  const secondNumber = timeValue % 10 || 0;
+  
   const sectionElement = document.getElementById(sectionID);
   const timeSegments =
     sectionElement.querySelectorAll('.clock-segment');
 
-  updateTimeSegment(timeSegments[0], firstNumber);
-  updateTimeSegment(timeSegments[1], secondNumber);
+    if (sectionID === 'millisec'){
+        const firstNumber = Math.floor(timeValue / 100) || 0;
+        const secondNumber = Math.floor((timeValue % 100) / 10) || 0;
+        const thirdNumber = timeValue % 10 || 0;
+        updateTimeSegment(timeSegments[0], firstNumber);
+        updateTimeSegment(timeSegments[1], secondNumber);
+        updateTimeSegment(timeSegments[2], thirdNumber);
+    }
+    else{
+        const firstNumber = Math.floor(timeValue / 10) || 0;
+        const secondNumber = timeValue % 10 || 0;
+        updateTimeSegment(timeSegments[0], firstNumber);
+        updateTimeSegment(timeSegments[1], secondNumber);
+    }
+  
 }
 
 function getTimeRemaining(targetDateTime) {
@@ -122,12 +134,8 @@ function getTimeRemaining(targetDateTime) {
 }
 
 function updateAllSegments() {
-//   const timeRemainingBits = getTimeRemaining(
-//     new Date(targetDate).getTime()
-//   );
-
   const timeRemainingBits = new Date()
-
+  updateTimeSection('millisec', timeRemainingBits.getMilliseconds());
   updateTimeSection('seconds', timeRemainingBits.getSeconds());
   updateTimeSection('minutes', timeRemainingBits.getMinutes());
   updateTimeSection('hours', timeRemainingBits.getHours());
@@ -135,13 +143,5 @@ function updateAllSegments() {
   return timeRemainingBits.complete;
 }
 
-// const countdownTimer = setInterval(() => {
-//   const isComplete = updateAllSegments();
-
-//   if (isComplete) {
-//     clearInterval(countdownTimer);
-//   }
-// }, 1000);
-
 updateAllSegments();
-setInterval(updateAllSegments, 100);
+setInterval(updateAllSegments, 300);
