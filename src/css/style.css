@@ -17,7 +17,7 @@ p{
     font-size: 45px;
     font-family: Arial, sans-serif;
 }
-:root {
+/* :root {
   --flip-height: 100px;
   --flip-width: calc(var(--flip-height) * 0.6);
   --line-height: calc(var(--flip-height) * 0.5);
@@ -28,7 +28,7 @@ p{
   --animation-time: 0.8s;
   --animation-ease: linear;
   --perspective: 200px;
-}
+} */
 
 
 .flip-clock {
@@ -117,11 +117,11 @@ p{
   }
   
   .card-overlay.flip .card-overlay_top {
-    animation: flip-top 0.8s linear;
+    animation: flip-top 0.2s linear;
   }
   
   .card-overlay.flip .card-overlay_bottom {
-    animation: flip-bottom 0.8s linear;
+    animation: flip-bottom 0.2s linear;
   }
   
   @keyframes flip-top {
