@@ -1,0 +1,141 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+html,
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222;
+    font-family: Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --flip-height: 100px;
+  --flip-width: calc(var(--flip-height) * 0.6);
+  --line-height: calc(var(--flip-height) * 0.5);
+  --flip-container-color: #353531;
+  --flip-color: #353531;
+  --flip-text-color: #efefef;
+  --flip-border-radius: calc(var(--flip-height) * 0.05);
+  --animation-time: 0.8s;
+  --animation-ease: linear;
+  --perspective: 200px;
+}
+
+
+.flip-clock {
+    margin: 100px auto;
+    width: 50%;
+    display: flex;
+    gap: 30px;
+    font-family: sans-serif;
+}
+
+.flip-clock-section {
+    text-align: center;
+    font-size: 30px;
+}
+
+.clock-group {
+    display: flex;
+    gap: 10px;
+}
+
+.clock-segment {
+    display: block;
+    font-size: 100px;
+    font-weight: 900;
+    width: 100px;
+}
+
+.card-display {
+    position: relative;
+    height: 100%;
+  }
+  
+  .card-display_top,
+  .card-display_bottom {
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+    position: relative;
+  }
+  
+  .card-display_top {
+    line-height: 1.5;
+    color: #eee;
+    background-color: #111;
+  }
+  
+  .card-display_bottom {
+    line-height: 0;
+    color: #fff;
+    background-color: #333;
+  }
+  
+  .card-overlay {
+    position: absolute;
+    top: 0;
+    perspective: 400px;
+    height: 100%;
+    width: 100px;
+  }
+  
+  .card-overlay_top,
+  .card-overlay_bottom {
+    position: absolute;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    height: 50%;
+  }
+  
+  .card-overlay_top {
+    top: 0;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #111;
+    transform-origin: bottom;
+  }
+  
+  .card-overlay_bottom {
+    bottom: 0;
+    line-height: 0;
+    color: #eee;
+    background-color: #333;
+    border-top: 2px solid black;
+    transform-origin: top;
+  }
+  
+  .card-overlay.flip .card-overlay_top {
+    animation: flip-top 0.8s linear;
+  }
+  
+  .card-overlay.flip .card-overlay_bottom {
+    animation: flip-bottom 0.8s linear;
+  }
+  
+  @keyframes flip-top {
+    0% {
+      transform: rotateX(0deg);
+    }
+    50%,
+    100% {
+      transform: rotateX(-90deg);
+    }
+  }
+  
+  @keyframes flip-bottom {
+    0%,
+    50% {
+      transform: rotateX(90deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
